@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "DB"
+			"name": "datos"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
