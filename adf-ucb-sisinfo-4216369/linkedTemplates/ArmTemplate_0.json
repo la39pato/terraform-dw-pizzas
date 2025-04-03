@@ -11,25 +11,9 @@
 			"type": "secureString",
 			"metadata": "Cadena protegida para \"connectionString\"de \"ls_sa_pizzas_csv\""
 		},
-		"ls_sql_db_pizzas_password": {
-			"type": "secureString",
-			"metadata": "Cadena protegida para \"password\"de \"ls_sql_db_pizzas\""
-		},
 		"ls_sql_dw_pizzas_password": {
 			"type": "secureString",
 			"metadata": "Cadena protegida para \"password\"de \"ls_sql_dw_pizzas\""
-		},
-		"ls_sql_db_pizzas_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "sql-ucb-sisinfo-4216369.database.windows.net"
-		},
-		"ls_sql_db_pizzas_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "db_pizzas"
-		},
-		"ls_sql_db_pizzas_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "naty"
 		},
 		"ls_sql_dw_pizzas_properties_typeProperties_server": {
 			"type": "string",
@@ -57,28 +41,6 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('ls_sa_pizzas_csv_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ls_sql_db_pizzas')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"server": "[parameters('ls_sql_db_pizzas_properties_typeProperties_server')]",
-					"database": "[parameters('ls_sql_db_pizzas_properties_typeProperties_database')]",
-					"encrypt": "mandatory",
-					"trustServerCertificate": false,
-					"authenticationType": "SQL",
-					"userName": "[parameters('ls_sql_db_pizzas_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('ls_sql_db_pizzas_password')]"
-					}
 				}
 			},
 			"dependsOn": []
@@ -246,8 +208,9 @@
 					},
 					{
 						"name": "price",
-						"type": "int",
-						"precision": 10
+						"type": "decimal",
+						"precision": 9,
+						"scale": 2
 					}
 				],
 				"typeProperties": {
@@ -269,7 +232,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "DB"
+					"name": "datos"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
@@ -317,7 +280,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "DB"
+					"name": "datos"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
@@ -361,7 +324,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "DB"
+					"name": "datos"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
@@ -409,7 +372,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "DB"
+					"name": "datos"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
